@@ -1,20 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 function App() {
   const calcRemainingDays = ()=>{
     const totalDays = 425
     const redemptionDay = Date.parse("12/1/2023")
     const today = Date.now()
-    console.log(String((redemptionDay - today)/1000/36/24/totalDays).substring(0,5)+"%")
-    document.getElementById("overlay").style.width = String((redemptionDay - today)/1000/36/24/totalDays).substring(0,5)+"%";
+    const progress = String((redemptionDay - today)/1000/36/24/totalDays).substring(0,5)+"%";
+    console.log(progress)
+    return progress
+    
   }
-  useEffect(()=>{calcRemainingDays()})
+  const displayProgress = () =>{
+    const progress = calcRemainingDays()
+    document.getElementById("overlay").style.right = progress
+    // const message = document.getElementById("stats")
+    // message.textContent = progress
+  }
+  useEffect(()=>{setTimeout(displayProgress, 500)})
   return (
     <div className="App">
-     <h1>اصبر وما صبرك إلا بالله</h1>
-     <div id="overlay">
-     </div>
+      
+      <div id="loader">
+      
+        <div id="container">
+          
+          <div id="overlay"></div>
+        </div>
+      </div>
+      
+     
+     
      
     </div>
   );
