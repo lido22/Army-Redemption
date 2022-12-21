@@ -10,27 +10,40 @@ function App() {
     return progress
     
   }
+  function getRemainingDays(){
+    const oneDay = 24*60*60*1000
+    const redemptionDay = Date.parse("12/1/2023")
+    const today = Date.now()
+    return Math.round(Math.abs((redemptionDay-today)/oneDay))
+  }
+  function getPastDays(){
+    const oneDay = 24*60*60*1000
+    const enslavingDay = Date.parse("10/1/2022")
+    const today = Date.now()
+    return Math.round(Math.abs((today-enslavingDay)/oneDay))
+  }
   const displayProgress = () =>{
     const progress = calcRemainingDays()
     document.getElementById("overlay").style.right = progress
-    // const message = document.getElementById("stats")
-    // message.textContent = progress
+    console.log(progress)
+    
   }
+
   useEffect(()=>{setTimeout(displayProgress, 500)})
   return (
     <div className="App">
-      
+      <div id="stats">
+        <p>Remaining Days = {getRemainingDays()}</p>
+        <p>Passed Days = {getPastDays()}</p>
+        <p>Passed Amount = {String(getPastDays()/(getRemainingDays()+getPastDays())*100).substring(0,5)}%</p>
+
+      </div>
       <div id="loader">
-      
+        
         <div id="container">
-          
           <div id="overlay"></div>
         </div>
       </div>
-      
-     
-     
-     
     </div>
   );
 }
