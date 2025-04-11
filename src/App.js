@@ -3,7 +3,7 @@ import React, { useEffect} from 'react';
 function App() {
   const calcRemainingDays = ()=>{
     const totalDays = 425
-    const redemptionDay = Date.parse("12/1/2023")
+    const redemptionDay = Date.parse("6/1/2026")
     const today = Date.now()
     const progress = String((redemptionDay - today)/1000/36/24/totalDays).substring(0,5)+"%";
     console.log(progress)
@@ -12,13 +12,13 @@ function App() {
   }
   function getRemainingDays(){
     const oneDay = 24*60*60*1000
-    const redemptionDay = Date.parse("12/1/2023")
+    const redemptionDay = Date.parse("6/1/2026")
     const today = Date.now()
     return Math.round(Math.abs((redemptionDay-today)/oneDay))
   }
   function getPastDays(){
     const oneDay = 24*60*60*1000
-    const enslavingDay = Date.parse("10/1/2022")
+    const enslavingDay = Date.parse("4/1/2025")
     const today = Date.now()
     return Math.round(Math.abs((today-enslavingDay)/oneDay))
   }
